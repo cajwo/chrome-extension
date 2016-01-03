@@ -1,0 +1,36 @@
+{
+    "manifest_version": 2,
+
+    "name": "IAmA Parser",
+    "description": "Removes all comment chains from Reddit post without OP",
+
+    "version": "1.0",
+
+    "background": {
+        "scripts": [ "background.js" ],
+        "persistent": false
+    },
+
+    "permissions": [
+        "declarativeContent",
+        "activeTab"
+    ],
+
+    "content_scripts": [
+      {
+        "matches": [ "http://www.reddit.com/r/IAmA/comments/*",
+                     "https://www.reddit.com/r/IAmA/comments/*"],
+        "css": [ "content_scripts/parse.css"],
+        "js": [ "content_scripts/jquery.min.js",
+                "content_scripts/comment-parser.js",
+                "content_scripts/main.js",
+                "popup/popup.js"]
+      }
+    ],
+
+    "page_action": {
+        "default_popup": "popup/popup.html",
+        "default_icon": "popup/icon.png",
+        "default_title": "IAmA Parser"
+    }
+}
